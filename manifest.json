@@ -1,0 +1,39 @@
+{
+
+  "manifest_version": 2,
+  "name": "colors",
+  "version": "0.1",
+
+  "description": "Sets the color of the browser window based on your domain, so you'll never forget which environment you're in",
+
+  "icons": {
+    "128": "icons/thumb.png"
+  },
+
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+
+  "background": {
+    "scripts": ["scripts/switcher.js"]
+  },
+
+    "browser_action": {
+    "default_icon": "icons/thumb.png",
+    "default_title": "colors",
+    "default_popup": "settings.html"
+  },
+
+    "browser_action": {
+    "default_icon": "icons/thumb.png",
+    "default_title": "colors",
+    "default_popup": "settings.html"
+  }
+
+}
+
+
+
+
+
