@@ -1,5 +1,4 @@
 {
-
   "manifest_version": 2,
   "name": "colors",
   "version": "0.1",
@@ -12,7 +11,8 @@
 
   "permissions": [
     "activeTab",
-    "tabs"
+    "tabs",
+    "theme"
   ],
 
   "background": {
