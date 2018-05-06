@@ -22,8 +22,6 @@ document.addEventListener( 'click', function(e) {
 
     var color = document.getElementById('color-select').value,
         domain = document.getElementById('domain').value;
-    console.log('pre-set');
-    console.log(colorMappings);
     colorMappings[domain] = color;
     console.log(colorMappings);
     browser.storage.local.set({colorMappings});

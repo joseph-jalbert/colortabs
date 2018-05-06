@@ -1,9 +1,11 @@
 let currentURL;
 
+browser.tabs.onUpdated.addListener( handleUpdated) ;
+browser.tabs.onActivated.addListener( handleActivated );
+
 function handleUpdated(tabId, changeInfo, tab) {
   if( changeInfo.status === 'complete') {
   	browser.tabs.query({currentWindow: true, active: true}).then(getURL, onError);
-  	// console.log('updated', currentURL)
   }
 }
 
@@ -13,11 +15,9 @@ function handleActivated(e){
 
 function getURL(tabs) {
     currentURL = tabs[0].url;
+    console.log('update');
+    console.log(currentURL);
     switchColor();
-}
-
-function onGot(item) {
-  console.log(item);
 }
 
 function onError(error) {
@@ -25,14 +25,18 @@ function onError(error) {
 }
 
 function switchColor() {
-	var colorMappings = browser.storage.local.get();
-	// colorMappings.then(onGot, onError);
-	// console.log('swithcing maybe...');
-
-	if ( colorMappings.currentURL ) {
-		browser.theme.update( themes[ colorMappings.currentURL ] );
-	} else {
-	}
+	console.log('switch...');
+	var colorMappings = browser.storage.local.get('colorMappings');
+	colorMappings.then( function(item) {
+		colorMappings = item.colorMappings;
+		console.log('swithcing maybe...');
+		console.log(currentURL);
+		console.log(colorMappings);
+		if ( colorMappings[currentURL] ) {
+			console.log('do it!!');
+			browser.theme.update( themes[ colorMappings[currentURL] ] );
+		} 
+	}, onError);
 }
 
 
@@ -86,9 +90,6 @@ const themes = {
     }
   },
 };
-
-browser.tabs.onUpdated.addListener(handleUpdated);
-browser.tabs.onActivated.addListener(handleActivated);
 
 //todo dont' use 'then'
 
