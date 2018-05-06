@@ -1,37 +1,31 @@
+var colorMappings = browser.storage.local.get('colorMappings'),
+    mappingForm = document.getElementById('mapping-input');
 
+    colorMappings.then(onGot, onError);
+//browser.storage.local.get('colorMappings') || 
+// mappings.forEach( function(m) {
+//     mappingForm.insertBefore
+// });
 
-let url;
-browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
-	url = tab.url;
-    if (url !== undefined && changeInfo.status == "complete") {
-    	alert(url);
-    	changeColor();
-	}    
-});
-
-browser.tabs.onActivated.addListener(function(evt){ 
-  browser.tabs.get(evt.tabId, function(tab){ 
-    url = tab.url;
-    alert(url);
-    changeColor();
-  }); 
-});
-
-
-function changeColor() {
-
+function onGot(item) {
+  console.log(item);
+  colorMappings = item.colorMappings || {};
 }
 
+function onError(error) {
+  console.log(`Error: ${error}`);
+}
 
+document.addEventListener( 'click', function(e) {
+  if (e.target.id === 'save-color-mapping') {
+    console.log('save stuff w/ storage API!');
 
-
-
-
-
-
-
-
-
-
-
-
+    var color = document.getElementById('color-select').value,
+        domain = document.getElementById('domain').value;
+    console.log('pre-set');
+    console.log(colorMappings);
+    colorMappings[domain] = color;
+    console.log(colorMappings);
+    browser.storage.local.set({colorMappings});
+  }
+});

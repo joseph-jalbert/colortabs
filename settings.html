@@ -7,16 +7,33 @@
           <tr>
              <th>Domain</th>
              <th>Color</th>
+             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <form id="mappings">
-              <td><input type="text" name="domain"></td>
-              <td><select name="theme">
+          <tr class="color-mapping">
+            <td>www.foobar.com</td>
+            <td>Red</td>
+            <td><button class="delete">delete</button></td>
+          </tr>
+          <tr id="mapping-input">
+            <td>
+              <input type="text" id="domain">
+            </td>
+            <td>
+              <select id="color-select" name="color">
+                <option id="white" value="white">white</option>
+                <option id="black" value="black">black</option>
+                <option id="blue" value="blue">blue</option>
+                <option id="red" value="red">red</option>
                 <option id="green" value="green">green</option>
-              </select></td>
-            </form>
+                <option id="orange" value="orange">orange</option>
+                <option id="yellow" value="yellow">yellow</option>
+                <option id="purple" value="purple">purple</option>
+              </select>
+            <td>
+              <button id="save-color-mapping">add</button>
+            </td>
           </tr>
         </tbody>
       </table>

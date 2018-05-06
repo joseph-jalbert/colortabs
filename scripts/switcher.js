@@ -16,16 +16,22 @@ function getURL(tabs) {
     switchColor();
 }
 
-function onError(err){
+function onGot(item) {
+  console.log(item);
+}
+
+function onError(error) {
+  console.log(`Error: ${error}`);
 }
 
 function switchColor() {
-	if (currentURL === 'https://news.ycombinator.com/') {
-		// console.log(currentURL, 'day');
-		browser.theme.update( themes['yellow'] );
+	var colorMappings = browser.storage.local.get();
+	// colorMappings.then(onGot, onError);
+	// console.log('swithcing maybe...');
+
+	if ( colorMappings.currentURL ) {
+		browser.theme.update( themes[ colorMappings.currentURL ] );
 	} else {
-		// console.log(currentURL, 'night');
-		browser.theme.update( themes['purple'] );
 	}
 }
 
