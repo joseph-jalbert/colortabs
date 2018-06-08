@@ -35,7 +35,9 @@ function switchColor() {
 		if ( colorMappings[currentURL] ) {
 			console.log('do it!!');
 			browser.theme.update( themes[ colorMappings[currentURL] ] );
-		} 
+		} else {
+      browser.theme.reset();
+    }
 	}, onError);
 }
 
