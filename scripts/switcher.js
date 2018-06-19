@@ -15,8 +15,8 @@ function handleActivated(e){
 
 function getURL(tabs) {
     currentURL = tabs[0].url;
-    console.log('update');
-    console.log(currentURL);
+    // console.log('update');
+    // console.log(currentURL);
     switchColor();
 }
 

@@ -1,4 +1,6 @@
 console.log('OPTIONS.JS');
+console.log(document);
+console.log(window);
 browser.runtime.openOptionsPage();
 
 var colorMappingsPromise = browser.storage.local.get('colorMappings'),
@@ -6,14 +8,11 @@ var colorMappingsPromise = browser.storage.local.get('colorMappings'),
     colorMappings;
 
     colorMappingsPromise.then(onGot, onError);
-//browser.storage.local.get('colorMappings') || 
-// mappings.forEach( function(m) {
-//     mappingForm.insertBefore
-// });
+
+var settingsTable = document.getElementById('settings');
 
 function onGot(item) {
   console.log('onGot');
-  console.log(item);
   colorMappings = item.colorMappings || {};
 
   for (domain in colorMappings) {
@@ -26,7 +25,9 @@ function onGot(item) {
         </tr>
     `;
     console.log(newRow);
-    // document.getElementById('settings').appendChild( newRow );
+    console.log(settingsTable);
+
+    settingsTable.insertAdjacentHTML( 'beforeend', newRow );
   }
 }
 

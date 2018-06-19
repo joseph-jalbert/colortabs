@@ -16,7 +16,7 @@
   ],
 
   "background": {
-    "scripts": ["scripts/switcher.js", "scripts/options.js"]
+    "scripts": ["scripts/switcher.js"]
   },
 
   "browser_action": {
