@@ -1,16 +1,35 @@
-var colorMappings = browser.storage.local.get('colorMappings'),
-    mappingForm = document.getElementById('mapping-input');
+console.log('OPTIONS.JS');
+browser.runtime.openOptionsPage();
 
-    colorMappings.then(onGot, onError);
+var colorMappingsPromise = browser.storage.local.get('colorMappings'),
+    mappingForm = document.getElementById('mapping-input'),
+    colorMappings;
+
+    colorMappingsPromise.then(onGot, onError);
 //browser.storage.local.get('colorMappings') || 
 // mappings.forEach( function(m) {
 //     mappingForm.insertBefore
 // });
 
 function onGot(item) {
+  console.log('onGot');
   console.log(item);
   colorMappings = item.colorMappings || {};
+
+  for (domain in colorMappings) {
+    console.log('looping...');
+    var newRow = `
+        <tr class="color-mapping">
+            <td>${ domain }</td>
+            <td>${ colorMappings[domain] }</td>
+            <td><button class="delete">delete</button></td>
+        </tr>
+    `;
+    console.log(newRow);
+    // document.getElementById('settings').appendChild( newRow );
+  }
 }
+
 
 function onError(error) {
   console.log(`Error: ${error}`);
@@ -23,10 +42,18 @@ document.addEventListener( 'click', function(e) {
     var color = document.getElementById('color-select').value,
         domain = document.getElementById('color-mapping-domain').value;
     colorMappings[domain] = color;
-    console.log(domain);
-    console.log(color);
-    console.log(colorMappings);
+    // console.log(domain);
+    // console.log(color);
+    // console.log(colorMappings);
     browser.storage.local.set({colorMappings});
   }
 
 });
+
+
+
+
+
+
+
+

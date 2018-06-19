@@ -19,10 +19,14 @@
     "scripts": ["scripts/switcher.js", "scripts/options.js"]
   },
 
-    "browser_action": {
+  "browser_action": {
     "default_icon": "icons/thumb.png",
-    "default_title": "colors",
-    "default_popup": "settings.html"
+    "default_title": "colors"
+  },
+
+  "options_ui": {
+    "page": "settings.html",
+    "browser_style": true
   }
 
 }

@@ -1,5 +1,5 @@
 let currentURL;
-
+console.log('SWTICHER.JS');
 browser.tabs.onUpdated.addListener( handleUpdated) ;
 browser.tabs.onActivated.addListener( handleActivated );
 
@@ -25,15 +25,15 @@ function onError(error) {
 }
 
 function switchColor() {
-	console.log('switch...');
+	// console.log('switch...');
 	var colorMappings = browser.storage.local.get('colorMappings');
 	colorMappings.then( function(item) {
 		colorMappings = item.colorMappings;
-		console.log('swithcing maybe...');
-		console.log(currentURL);
-		console.log(colorMappings);
+		// console.log('swithcing maybe...');
+		// console.log(currentURL);
+		// console.log(colorMappings);
 		if ( colorMappings[currentURL] ) {
-			console.log('do it!!');
+			// console.log('do it!!');
 			browser.theme.update( themes[ colorMappings[currentURL] ] );
 		} else {
       browser.theme.reset();
