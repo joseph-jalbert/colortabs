@@ -1,20 +1,18 @@
 console.log('OPTIONS.JS');
 console.log(document);
 console.log(window);
+
 browser.runtime.openOptionsPage();
 
-var colorMappingsPromise = browser.storage.local.get('colorMappings'),
-    mappingForm = document.getElementById('mapping-input'),
+var settingsTable = document.getElementById('settings'),
+    addMapping = document.getElementById('color-mapping-button'),
     colorMappings;
 
-    colorMappingsPromise.then(onGot, onError);
+getMappings();
 
-var settingsTable = document.getElementById('settings');
+//render all saved mappings
 
-function onGot(item) {
-  console.log('onGot');
-  colorMappings = item.colorMappings || {};
-
+function renderMappings( mode ) {
   for (domain in colorMappings) {
     console.log('looping...');
     var newRow = `
@@ -32,24 +30,36 @@ function onGot(item) {
 }
 
 
+function getMappings() {
+  var colorMappingsPromise = browser.storage.local.get('colorMappings');
+      colorMappingsPromise.then(onGot, onError);
+}
+
+function onGot(item) {
+  console.log('onGot');
+  colorMappings = item.colorMappings || {};
+  renderMappings();  
+}
+
 function onError(error) {
   console.log(`Error: ${error}`);
 }
 
-document.addEventListener( 'click', function(e) {
-  if (e.target.id === 'color-mapping-button') {
+addMapping.addEventListener( 'click', function(e) {
     console.log('save stuff w/ storage API!');
 
     var color = document.getElementById('color-select').value,
         domain = document.getElementById('color-mapping-domain').value;
     colorMappings[domain] = color;
-    // console.log(domain);
-    // console.log(color);
-    // console.log(colorMappings);
     browser.storage.local.set({colorMappings});
-  }
+    
+    var newRow  = settingsTable.insertRow(-1);
+      newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', domain );
+      newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', colorMappings[domain] );
+      newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', '<button class="delete">delete</button>' );
 
 });
+
 
 
 
