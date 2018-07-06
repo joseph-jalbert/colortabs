@@ -1,5 +1,6 @@
-let currentURL;
 console.log('SWTICHER.JS');
+
+let hostname;
 browser.tabs.onUpdated.addListener( handleUpdated) ;
 browser.tabs.onActivated.addListener( handleActivated );
 
@@ -14,9 +15,8 @@ function handleActivated(e){
 }
 
 function getURL(tabs) {
-    currentURL = tabs[0].url;
-    // console.log('update');
-    // console.log(currentURL);
+    var currentURL = new URL(tabs[0].url);
+    hostname = currentURL.hostname;
     switchColor();
 }
 
@@ -25,16 +25,11 @@ function onError(error) {
 }
 
 function switchColor() {
-	// console.log('switch...');
 	var colorMappings = browser.storage.local.get('colorMappings');
 	colorMappings.then( function(item) {
 		colorMappings = item.colorMappings;
-		// console.log('swithcing maybe...');
-		// console.log(currentURL);
-		// console.log(colorMappings);
-		if ( colorMappings[currentURL] ) {
-			// console.log('do it!!');
-			browser.theme.update( themes[ colorMappings[currentURL] ] );
+		if ( colorMappings[hostname] ) {
+			browser.theme.update( themes[ colorMappings[hostname] ] );
 		} else {
       browser.theme.reset();
     }
@@ -92,8 +87,6 @@ const themes = {
     }
   },
 };
-
-//todo dont' use 'then'
 
 
 

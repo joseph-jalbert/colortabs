@@ -23,7 +23,6 @@ function renderMappings( mode ) {
   }
 }
 
-
 function getMappings() {
   var colorMappingsPromise = browser.storage.local.get('colorMappings');
       colorMappingsPromise.then(onGot, onError);
