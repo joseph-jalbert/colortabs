@@ -1,6 +1,4 @@
 console.log('OPTIONS.JS');
-console.log(document);
-console.log(window);
 
 browser.runtime.openOptionsPage();
 
@@ -14,17 +12,13 @@ getMappings();
 
 function renderMappings( mode ) {
   for (domain in colorMappings) {
-    console.log('looping...');
     var newRow = `
-        <tr class="color-mapping">
+        <tr id="${ domain }">
             <td>${ domain }</td>
             <td>${ colorMappings[domain] }</td>
             <td><button class="delete">delete</button></td>
         </tr>
     `;
-    console.log(newRow);
-    console.log(settingsTable);
-
     settingsTable.insertAdjacentHTML( 'beforeend', newRow );
   }
 }
@@ -36,7 +30,6 @@ function getMappings() {
 }
 
 function onGot(item) {
-  console.log('onGot');
   colorMappings = item.colorMappings || {};
   renderMappings();  
 }
@@ -45,8 +38,7 @@ function onError(error) {
   console.log(`Error: ${error}`);
 }
 
-addMapping.addEventListener( 'click', function(e) {
-    console.log('save stuff w/ storage API!');
+addMapping.addEventListener( 'click', function() {
 
     var color = document.getElementById('color-select').value,
         domain = document.getElementById('color-mapping-domain').value;
@@ -54,10 +46,22 @@ addMapping.addEventListener( 'click', function(e) {
     browser.storage.local.set({colorMappings});
     
     var newRow  = settingsTable.insertRow(-1);
+      newRow.id = domain;
       newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', domain );
       newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', colorMappings[domain] );
       newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', '<button class="delete">delete</button>' );
 
+});
+
+settingsTable.addEventListener( 'click', function(e) {
+  var domain;
+  if ( e.target.className === 'delete' ) {
+    domain = e.target.parentElement.parentElement.id;
+    //remove row from DOM and entry for mappings object
+    e.target.parentElement.parentElement.remove();
+    delete colorMappings[domain];
+    browser.storage.local.set({colorMappings});
+  }
 });
 
 
