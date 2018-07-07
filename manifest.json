@@ -21,7 +21,8 @@
 
   "browser_action": {
     "default_icon": "icons/thumb.png",
-    "default_title": "colors"
+    "default_title": "colors",
+    "default_popup": "popup.html"
   },
 
   "options_ui": {
