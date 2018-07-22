@@ -70,7 +70,13 @@ const themes = {
   },
   'green': {
     colors: {
-     accentcolor: '#00ff00',
+     accentcolor: '#00800',
+     textcolor: '#000',
+    }
+  },
+  'dark-green': {
+    colors: {
+     accentcolor: '#006400',
      textcolor: '#000',
     }
   },
@@ -91,7 +97,7 @@ const themes = {
      accentcolor: '#551a8b',
      textcolor: '#000',
     }
-  },
+  }
 };
 
 

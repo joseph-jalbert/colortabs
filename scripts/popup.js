@@ -52,21 +52,9 @@ const themes = {
      textcolor: '#000',
     }
   },
-  'blue': {
-    colors: {
-     accentcolor: '#2257f7',
-     textcolor: '#000',
-    }
-  },
   'red': {
     colors: {
-     accentcolor: '#ea070a',
-     textcolor: '#000',
-    }
-  },
-  'green': {
-    colors: {
-     accentcolor: '#11db3d',
+     accentcolor: '#ff0000',
      textcolor: '#000',
     }
   },
@@ -82,17 +70,37 @@ const themes = {
      textcolor: '#000',
     }
   },
-  'purple': {
+  'green': {
     colors: {
-     accentcolor: '#a020f0',
+     accentcolor: '#00ff00',
      textcolor: '#000',
     }
   },
+  'dark-green': {
+    colors: {
+     accentcolor: '#006400',
+     textcolor: '#000',
+    }
+  },
+  'blue': {
+    colors: {
+     accentcolor: '#0000ff',
+     textcolor: '#000',
+    }
+  },
+  'teal': {
+    colors: {
+     accentcolor: '#008080',
+     textcolor: '#000',
+    }
+  },
+  'purple': {
+    colors: {
+     accentcolor: '#551a8b',
+     textcolor: '#000',
+    }
+  }
 };
-
-
-
-
 
 
 
