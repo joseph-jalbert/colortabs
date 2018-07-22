@@ -21,12 +21,14 @@ function onError(error) {
   console.log(`Error: ${error}`);
 }
 
+//TODO show user confimation of save and immediately change
 function saveMapping(tabs) {
 	var currentURL = new URL(tabs[0].url);
 	domain = currentURL.hostname;
 	color = document.getElementById('color-select').value;
 	colorMappings[domain] = color;
 	browser.storage.local.set({colorMappings});
+	browser.theme.update( themes[color] );
 }
 
 addMapping.addEventListener( 'click', function() {
@@ -36,6 +38,57 @@ addMapping.addEventListener( 'click', function() {
 goToOptions.addEventListener( 'click', function() {
 	browser.runtime.openOptionsPage();
 });
+
+const themes = {
+  'grey': {
+    colors: {
+     accentcolor: '#000',
+     textcolor: '#FFF',
+    }
+  },
+  'white': {
+    colors: {
+     accentcolor: '#FFF',
+     textcolor: '#000',
+    }
+  },
+  'blue': {
+    colors: {
+     accentcolor: '#2257f7',
+     textcolor: '#000',
+    }
+  },
+  'red': {
+    colors: {
+     accentcolor: '#ea070a',
+     textcolor: '#000',
+    }
+  },
+  'green': {
+    colors: {
+     accentcolor: '#11db3d',
+     textcolor: '#000',
+    }
+  },
+  'orange': {
+    colors: {
+     accentcolor: '#ffa500',
+     textcolor: '#000',
+    }
+  },
+  'yellow': {
+    colors: {
+     accentcolor: '#ffff00',
+     textcolor: '#000',
+    }
+  },
+  'purple': {
+    colors: {
+     accentcolor: '#a020f0',
+     textcolor: '#000',
+    }
+  },
+};
 
 
 

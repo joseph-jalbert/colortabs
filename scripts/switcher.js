@@ -1,4 +1,4 @@
-console.log('SWTICHER.JS');
+console.log('SWTICHER.JS', document);
 
 let hostname;
 browser.tabs.onUpdated.addListener( handleUpdated) ;
@@ -38,33 +38,21 @@ function switchColor() {
 
 
 const themes = {
-  'white': {
+  'grey': {
     colors: {
      accentcolor: '#000',
      textcolor: '#FFF',
     }
   },
-  'black': {
+  'white': {
     colors: {
      accentcolor: '#FFF',
      textcolor: '#000',
     }
   },
-  'blue': {
-    colors: {
-     accentcolor: '#2257f7',
-     textcolor: '#000',
-    }
-  },
   'red': {
     colors: {
-     accentcolor: '#ea070a',
-     textcolor: '#000',
-    }
-  },
-  'green': {
-    colors: {
-     accentcolor: '#11db3d',
+     accentcolor: '#ff0000',
      textcolor: '#000',
     }
   },
@@ -80,9 +68,27 @@ const themes = {
      textcolor: '#000',
     }
   },
+  'green': {
+    colors: {
+     accentcolor: '#00ff00',
+     textcolor: '#000',
+    }
+  },
+  'blue': {
+    colors: {
+     accentcolor: '#0000ff',
+     textcolor: '#000',
+    }
+  },
+  'teal': {
+    colors: {
+     accentcolor: '#008080',
+     textcolor: '#000',
+    }
+  },
   'purple': {
     colors: {
-     accentcolor: '#a020f0',
+     accentcolor: '#551a8b',
      textcolor: '#000',
     }
   },

@@ -1,9 +1,7 @@
-console.log('OPTIONS.JS');
-
-browser.runtime.openOptionsPage();
+console.log('OPTIONS.JS', document);
 
 var settingsTable = document.getElementById('settings'),
-    addMapping = document.getElementById('color-mapping-button'),
+    // addMapping = document.getElementById('add-mapping'),
     colorMappings;
 
 getMappings();
@@ -37,20 +35,20 @@ function onError(error) {
   console.log(`Error: ${error}`);
 }
 
-addMapping.addEventListener( 'click', function() {
+// addMapping.addEventListener( 'click', function() {
 
-    var color = document.getElementById('color-select').value,
-        domain = document.getElementById('color-mapping-domain').value;
-    colorMappings[domain] = color;
-    browser.storage.local.set({colorMappings});
+//     var color = document.getElementById('color-select').value,
+//         domain = document.getElementById('color-mapping-domain').value;
+//     colorMappings[domain] = color;
+//     browser.storage.local.set({colorMappings});
     
-    var newRow  = settingsTable.insertRow(-1);
-      newRow.id = domain;
-      newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', domain );
-      newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', colorMappings[domain] );
-      newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', '<button class="delete">delete</button>' );
+//     var newRow  = settingsTable.insertRow(-1);
+//       newRow.id = domain;
+//       newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', domain );
+//       newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', colorMappings[domain] );
+//       newCell = newRow.insertCell(-1).insertAdjacentHTML( 'beforeend', '<button class="delete">delete</button>' );
 
-});
+// });
 
 settingsTable.addEventListener( 'click', function(e) {
   var domain;
