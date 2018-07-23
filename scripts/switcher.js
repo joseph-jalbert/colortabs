@@ -1,6 +1,5 @@
-console.log('SWTICHER.JS', document);
+var hostName;
 
-let hostname;
 browser.tabs.onUpdated.addListener( handleUpdated) ;
 browser.tabs.onActivated.addListener( handleActivated );
 
@@ -16,7 +15,7 @@ function handleActivated(e){
 
 function getURL(tabs) {
     var currentURL = new URL(tabs[0].url);
-    hostname = currentURL.hostname;
+    hostName = currentURL.hostname;
     switchColor();
 }
 
@@ -28,8 +27,8 @@ function switchColor() {
 	var colorMappings = browser.storage.local.get('colorMappings');
 	colorMappings.then( function(item) {
 		colorMappings = item.colorMappings;
-		if ( colorMappings[hostname] ) {
-			browser.theme.update( themes[ colorMappings[hostname] ] );
+		if ( colorMappings[hostName] ) {
+			browser.theme.update( themes[ colorMappings[hostName] ] );
 		} else {
       browser.theme.reset();
     }
@@ -82,7 +81,7 @@ const themes = {
   },
   'blue': {
     colors: {
-     accentcolor: '#0000ff',
+     accentcolor: '#0E4D92',
      textcolor: '#000',
     }
   },

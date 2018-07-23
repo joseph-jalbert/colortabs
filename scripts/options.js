@@ -1,5 +1,3 @@
-console.log('OPTIONS.JS', document);
-
 var settingsTable = document.getElementById('settings'),
     colorMappings;
 
@@ -7,11 +5,11 @@ getMappings();
 
 //render saved mappings
 function renderMappings( mode ) {
-  for (domain in colorMappings) {
+  for (hostName in colorMappings) {
     var newRow = `
-        <tr id="${ domain }">
-            <td>${ domain }</td>
-            <td class="${ colorMappings[domain] }">${ colorMappings[domain] }</td>
+        <tr id="${ hostName }">
+            <td>${ hostName }</td>
+            <td class="${ colorMappings[hostName] }">${ colorMappings[hostName] }</td>
             <td><button class="delete">delete</button></td>
         </tr>
     `;
@@ -29,20 +27,20 @@ function onGot(item) {
   renderMappings();  
 }
 
-function onError(error) {
-  console.log(`Error: ${error}`);
-}
-
 settingsTable.addEventListener( 'click', function(e) {
-  var domain;
+  var hostName;
   if ( e.target.className === 'delete' ) {
-    domain = e.target.parentElement.parentElement.id;
+    hostName = e.target.parentElement.parentElement.id;
     //remove row from DOM and entry from mappings object
     e.target.parentElement.parentElement.remove();
-    delete colorMappings[domain];
+    delete colorMappings[hostName];
     browser.storage.local.set({colorMappings});
   }
 });
+
+function onError(error) {
+  console.log(`Error: ${error}`);
+}
 
 
 
