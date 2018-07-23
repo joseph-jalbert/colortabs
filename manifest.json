@@ -1,9 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "colors",
+  "name": "ColorTabs",
   "version": "0.1",
+  "author": "Joe Jalbert",
+  "homepage_url": "https://github.com/joseph-jalbert/colortabs",
 
-  "description": "Sets the color of the browser window based on your domain, so you'll never forget which environment you're in",
+  "description": "Set the color of the browser window based on the current hostname so you'll never forget which environment you're in",
 
   "icons": {
     "128": "icons/thumb.png"
