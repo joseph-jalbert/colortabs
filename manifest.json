@@ -7,8 +7,14 @@
 
   "description": "Set the color of the browser window based on the current hostname so you'll never forget which environment you're in",
 
+  "applications": {
+    "gecko": {
+      "id": "colortabs@joejalbert.com"
+    }
+  },
+
   "icons": {
-    "128": "icons/thumb.png"
+    "32": "icons/thumb.png"
   },
 
   "permissions": [
