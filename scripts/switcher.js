@@ -2,6 +2,7 @@ var hostName;
 
 browser.tabs.onUpdated.addListener( handleUpdated) ;
 browser.tabs.onActivated.addListener( handleActivated );
+browser.windows.onFocusChanged.addListener( handleActivated );
 
 function handleUpdated(tabId, changeInfo, tab) {
   if( changeInfo.status === 'complete') {
