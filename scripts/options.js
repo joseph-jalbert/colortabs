@@ -9,7 +9,7 @@ function renderMappings( mode ) {
     var newRow = `
         <tr id="${ hostName }">
             <td>${ hostName }</td>
-            <td class="${ colorMappings[hostName] }">${ colorMappings[hostName] }</td>
+            <td style="background-color: ${ colorMappings[hostName] }">${ colorMappings[hostName] }</td>
             <td><button class="delete">delete</button></td>
         </tr>
     `;
@@ -24,7 +24,7 @@ function getMappings() {
 
 function onGot(item) {
   colorMappings = item.colorMappings || {};
-  renderMappings();  
+  renderMappings();
 }
 
 settingsTable.addEventListener( 'click', function(e) {
@@ -41,12 +41,3 @@ settingsTable.addEventListener( 'click', function(e) {
 function onError(error) {
   console.log(`Error: ${error}`);
 }
-
-
-
-
-
-
-
-
-
