@@ -34,12 +34,14 @@
 
   "sidebar_action": {
     "default_title": "ColorTabs",
-    "default_panel": "popup.html"
+    "default_panel": "popup.html",
+    "default_icon": {
+        "32": "icons/thumb.png"
+    }
   },
 
   "options_ui": {
     "page": "options.html",
     "browser_style": true
   }
-
 }
