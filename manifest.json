@@ -29,8 +29,12 @@
 
   "browser_action": {
     "default_icon": "icons/thumb.png",
-    "default_title": "colors",
-    "default_popup": "popup.html"
+    "default_title": "colors"
+  },
+
+  "sidebar_action": {
+    "default_title": "ColorTabs",
+    "default_panel": "popup.html"
   },
 
   "options_ui": {
@@ -39,8 +43,3 @@
   }
 
 }
-
-
-
-
-

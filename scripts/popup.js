@@ -5,6 +5,37 @@ const addMapping = document.getElementById('add-mapping'),
 var colorMappings,
     hostName;
 
+console.log('newly loaded popup.js');
+
+var toggleSidebar = function openSidebar(){
+	console.log('open sidebar');
+	browser.sidebarAction.open();
+	// console.log('check if open...');
+	// browser.sidebarAction.isOpen({}).then( function(open) {
+	// 	if (open) {
+	// 		console.log('close');
+	// 		browser.sidebarAction.close();
+	// 	} else {
+	// 		console.log('open');
+	//  		browser.sidebarAction.open();
+	// 	}
+	// });
+}
+console.log('add listener');
+browser.browserAction.onClicked.addListener( function() {
+	console.log('open sidebar');
+	browser.sidebarAction.open();
+} );
+
+
+// if ( browser.browserAction.onClicked.hasListener() ) {
+// 	console.log('already have lister');
+//
+// } else {
+//
+// }
+
+
 goToOptions.addEventListener( 'click', function() {
 	browser.runtime.openOptionsPage();
 });
