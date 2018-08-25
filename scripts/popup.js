@@ -9,7 +9,6 @@ goToOptions.addEventListener( 'click', function() {
 	browser.runtime.openOptionsPage();
 });
 
-
 //get current hostname whenever switching windows, tabs, or navigating to new page
 
 function getHostName() {

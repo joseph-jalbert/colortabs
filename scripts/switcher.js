@@ -37,7 +37,7 @@ function switchColor() {
 }
 
 //open sidebar from Toolbar Button (aka browser action)
-browser.browserAction.onClicked.addListener( => {
+browser.browserAction.onClicked.addListener( function() {
 	browser.sidebarAction.open();
 } );
 
