@@ -23,7 +23,7 @@ function getURL(tabs) {
 function switchColor() {
 	var colorMappings = browser.storage.local.get('colorMappings');
 	colorMappings.then( function(item) {
-		colorMappings = item.colorMappings;
+		colorMappings = item.colorMappings || {};
 		if ( colorMappings[hostName] ) {
 			browser.theme.update( { colors: {
     		     accentcolor: colorMappings[hostName],

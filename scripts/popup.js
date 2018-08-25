@@ -19,7 +19,7 @@ function setHostName(tabsObject) {
 	hostName = currentURL.hostname;
 	//match color of input to saved domain
 	browser.storage.local.get('colorMappings').then( function(item) {
-		colorMappings = item.colorMappings;
+		colorMappings = item.colorMappings || {};
 		if ( colorMappings[hostName] ) {
 			colors.value = colorMappings[hostName];
 		} else {
@@ -36,11 +36,11 @@ browser.windows.onFocusChanged.addListener( handleActivated );
 
 function handleUpdated(tabId, changeInfo, tab) {
   if( changeInfo.status === 'complete') {
-	  getHostName()
+	  getHostName();
   }
 }
 function handleActivated(e){
-	getHostName()
+	getHostName();
 }
 
 //load saved mappings
