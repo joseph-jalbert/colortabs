@@ -10,7 +10,6 @@ goToOptions.addEventListener( 'click', function() {
 });
 
 //get current hostname whenever switching windows, tabs, or navigating to new page
-
 function getHostName() {
 	browser.tabs.query( {currentWindow: true, active: true} ).then( setHostName, onError );
 }
@@ -18,6 +17,15 @@ function getHostName() {
 function setHostName(tabsObject) {
 	var currentURL = new URL( tabsObject[0].url );
 	hostName = currentURL.hostname;
+	//match color of input to saved domain
+	browser.storage.local.get('colorMappings').then( function(item) {
+		colorMappings = item.colorMappings;
+		if ( colorMappings[hostName] ) {
+			colors.value = colorMappings[hostName];
+		} else {
+			colors.value = '#FFFFFF';
+		}
+	});
 }
 
 getHostName();
