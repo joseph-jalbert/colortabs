@@ -20,18 +20,27 @@ function getURL(tabs) {
     switchColor();
 }
 
-function onError(error) {
-  console.log(`Error: ${error}`);
-}
-
 function switchColor() {
 	var colorMappings = browser.storage.local.get('colorMappings');
 	colorMappings.then( function(item) {
 		colorMappings = item.colorMappings;
 		if ( colorMappings[hostName] ) {
-			browser.theme.update( themes[ colorMappings[hostName] ] );
+			browser.theme.update( { colors: {
+    		     accentcolor: colorMappings[hostName],
+    		     textcolor: '#000',
+    		    }
+    		} );
 		} else {
       browser.theme.reset();
     }
 	}, onError);
+}
+
+//open sidebar from Toolbar Button (aka browser action)
+browser.browserAction.onClicked.addListener( => {
+	browser.sidebarAction.open();
+} );
+
+function onError(error) {
+  console.log(`Error: ${error}`);
 }
