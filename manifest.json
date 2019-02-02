@@ -20,7 +20,8 @@
   "permissions": [
     "storage",
     "tabs",
-    "theme"
+    "theme",
+    "downloads"
   ],
 
   "background": {

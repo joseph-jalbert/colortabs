@@ -20,9 +20,9 @@ function getMappings() {
     browser.storage.local.get('colorMappings').then(onGot, onError);
 }
 
-function onGot(item) {
+async function onGot(item) {
     colorMappings = item.colorMappings || {};
-    renderMappings();
+    await renderMappings();
 }
 
 getMappings();
@@ -37,6 +37,19 @@ settingsTable.addEventListener( 'click', function(e) {
         browser.storage.local.set({colorMappings});
     }
 });
+
+let exportButton = document.getElementById('exportButton'),
+    exportLink = document.getElementById('exportLink');
+
+exportButton.onclick = function() {
+    browser.storage.local.get('colorMappings').then( (mappings) => {
+        let exportJSON = JSON.stringify( mappings, null, 4 ),
+            blob = new Blob( [exportJSON], {type: 'octet/stream'} ),
+            exportURL = window.URL.createObjectURL( blob );
+
+        browser.downloads.download( { url: exportURL, filename: 'color-tabs-saved-entries.json', saveAs: true } );
+    });
+};
 
 //reload script when switching to options page tab, so list will always be fresh
 browser.tabs.onActivated.addListener( handleActivated );
