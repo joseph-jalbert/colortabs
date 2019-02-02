@@ -13,8 +13,22 @@
         <tbody id="settings">
         </tbody>
       </table>
-      <button id="exportButton">export saved mappings</button>
-      <button id="importButton">import mappings</button>
+      <div id="importexport">
+        <button id="exportButton">export</button>
+        <button id="importButton">import</button>
+      </div>
     </body>
     <script src="scripts/options.js"></script>
 </html>
+
+
+<style>
+  #exportButton,
+  #importButton {
+    width: 65px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 2px solid;
+    display: inline-block;
+  }
+</style>
