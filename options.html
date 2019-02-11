@@ -15,8 +15,10 @@
       </table>
       <div id="importexport">
         <button id="exportButton">export</button>
+        <input type="file" id="importInput" accept=".json" hidden/>
         <button id="importButton">import</button>
       </div>
+      <p style="font-style: italic;">Please note: an imported setting will overwrite a pre-existing setting for the same domain. Any domains not in the import file will be retained</p>
     </body>
     <script src="scripts/options.js"></script>
 </html>

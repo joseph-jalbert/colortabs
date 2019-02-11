@@ -1,6 +1,6 @@
 const addMapping = document.getElementById('add-mapping'),
-		goToOptions = document.getElementById('go-to-options'),
-		colors = document.getElementById('color-select');
+	  goToOptions = document.getElementById('go-to-options'),
+	  colors = document.getElementById('color-select');
 
 var colorMappings,
     hostName;
@@ -14,13 +14,13 @@ function getHostName() {
 	browser.tabs.query( {currentWindow: true, active: true} ).then( setHostName, onError );
 }
 
-function setHostName(tabsObject) {
+function setHostName( tabsObject ) {
 	var currentURL = new URL( tabsObject[0].url );
 	hostName = currentURL.hostname;
 	//match color of input to saved domain
-	browser.storage.local.get('colorMappings').then( function(item) {
+	browser.storage.local.get( 'colorMappings' ).then( function( item ) {
 		colorMappings = item.colorMappings || {};
-		if ( colorMappings[hostName] ) {
+		if ( colorMappings[ hostName ] ) {
 			colors.value = colorMappings[hostName];
 		} else {
 			colors.value = '#FFFFFF';
@@ -34,12 +34,12 @@ browser.tabs.onUpdated.addListener( handleUpdated) ;
 browser.tabs.onActivated.addListener( handleActivated );
 browser.windows.onFocusChanged.addListener( handleActivated );
 
-function handleUpdated(tabId, changeInfo, tab) {
+function handleUpdated( tabId, changeInfo, tab ) {
   if( changeInfo.status === 'complete') {
 	  getHostName();
   }
 }
-function handleActivated(e){
+function handleActivated( e ){
 	getHostName();
 }
 

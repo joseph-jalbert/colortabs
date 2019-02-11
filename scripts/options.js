@@ -51,6 +51,43 @@ exportButton.onclick = function() {
     });
 };
 
+let importInput = document.getElementById( 'importInput' ),
+    importButton = document.getElementById( 'importButton' );
+
+importInput.addEventListener( 'change', importMappings, false );
+importButton.addEventListener( 'click', () => { importInput.click(); } );
+
+function importMappings(e) {
+    let files = e.target.files,
+        reader = new FileReader();
+    reader.onload = saveImportedJSON;
+    //TODO is the necessary?
+    reader.readAsText( files[0] );
+}
+
+function saveImportedJSON() {
+    let importedSettings = JSON.parse( this.result ).colorMappings,
+        existingSettings,
+        settings = {};
+    browser.storage.local.get( 'colorMappings' ).then( (o) => {
+        existingSettings = o.colorMappings;
+        if ( ! importedSettings  ) {
+            return;
+        }
+        Object.keys( existingSettings ).forEach( domain => {
+            settings[ domain ] = existingSettings[ domain ];
+        });
+
+        Object.keys( importedSettings ).forEach( domain => {
+            settings[ domain ] = importedSettings[ domain ];
+        });
+        browser.storage.local.set( { colorMappings: settings } );
+        browser.runtime.openOptionsPage();
+        //refresh options page
+        importInput.value = '';
+    });
+}
+
 //reload script when switching to options page tab, so list will always be fresh
 browser.tabs.onActivated.addListener( handleActivated );
 browser.windows.onFocusChanged.addListener( handleActivated );
