@@ -55,8 +55,8 @@ addMapping.addEventListener( 'click', function() {
 	browser.storage.local.set( {colorMappings} );
 	browser.theme.update(
 		{ colors: {
-		     accentcolor: colors.value,
-		     textcolor: '#000',
+		     frame: colors.value,
+		     backgroundtext: '#000',
 		    }
 		}
 	);

@@ -74,6 +74,7 @@ function saveImportedJSON() {
         if ( ! importedSettings  ) {
             return;
         }
+        
         Object.keys( existingSettings ).forEach( domain => {
             settings[ domain ] = existingSettings[ domain ];
         });
@@ -82,9 +83,9 @@ function saveImportedJSON() {
             settings[ domain ] = importedSettings[ domain ];
         });
         browser.storage.local.set( { colorMappings: settings } );
-        browser.runtime.openOptionsPage();
-        //refresh options page
         importInput.value = '';
+        //refresh options page
+        browser.runtime.openOptionsPage();
     });
 }
 

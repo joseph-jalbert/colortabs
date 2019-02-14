@@ -26,8 +26,8 @@ function switchColor() {
 		colorMappings = item.colorMappings || {};
 		if ( colorMappings[hostName] ) {
 			browser.theme.update( { colors: {
-    		     accentcolor: colorMappings[hostName],
-    		     textcolor: '#000',
+    		     frame: colorMappings[hostName],
+    		     backgroundtext: '#000',
     		    }
     		} );
 		} else {
