@@ -7,11 +7,12 @@
 
     <body>
     	<div id="container">
-    		<button id="add-mapping">Display current domain as...</button>
+            <label for="color-select">-Select a color for this domain-</label>
             <input  id="color-select" type="color" value="#FFFFFF">
+            <button id="add-mapping">save</button>
     	</div>
-    	<div>
-    		<button id="go-to-options">Options</button>
+    	<div id="options">
+    		<button id="go-to-options">Settings</button>
     	</div>
     	<script src="scripts/popup.js"></script>
     </body>
@@ -19,8 +20,11 @@
 </html>
 
 <style>
+* {
+    font-size: 14px;
+}
 #container {
-    margin: 10px 0;
+    margin: 10px 5px;
 }
 
 #add-mapping {
@@ -28,6 +32,10 @@
 }
 #color-select {
     vertical-align: middle;
+}
+
+#options {
+    margin-left: 5px;
 }
 
 </style>

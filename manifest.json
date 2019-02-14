@@ -5,7 +5,7 @@
   "author": "Joe Jalbert",
   "homepage_url": "https://github.com/joseph-jalbert/colortabs",
 
-  "description": "Set the color of the browser window based on the current hostname so you'll never forget which environment you're in",
+  "description": "Set the color of the browser window based on the current domain so you'll never forget which environment you're in. Save/load your settings as a JSON file with 'export' and 'import' to keep settings across devices or share them.",
 
   "applications": {
     "gecko": {
