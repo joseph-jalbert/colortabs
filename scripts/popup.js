@@ -3,7 +3,7 @@ const addMapping = document.getElementById('add-mapping'),
 	  colors = document.getElementById('color-select');
 
 var colorMappings,
-    hostName;
+    host;
 
 goToOptions.addEventListener( 'click', function() {
 	browser.runtime.openOptionsPage();
@@ -16,12 +16,12 @@ function getHostName() {
 
 function setHostName( tabsObject ) {
 	var currentURL = new URL( tabsObject[0].url );
-	hostName = currentURL.hostname;
+	host = currentURL.host;
 	//match color of input to saved domain
 	browser.storage.local.get( 'colorMappings' ).then( function( item ) {
 		colorMappings = item.colorMappings || {};
-		if ( colorMappings[ hostName ] ) {
-			colors.value = colorMappings[hostName];
+		if ( colorMappings[ host ] ) {
+			colors.value = colorMappings[ host ];
 		} else {
 			colors.value = '#FFFFFF';
 		}
@@ -51,7 +51,7 @@ function loadMappings(item) {
 }
 //save new mapping
 addMapping.addEventListener( 'click', function() {
-	colorMappings[hostName] = colors.value;
+	colorMappings[ host ] = colors.value;
 	browser.storage.local.set( {colorMappings} );
 	browser.theme.update(
 		{ colors: {

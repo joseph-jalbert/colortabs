@@ -63,6 +63,8 @@ function importMappings(e) {
     reader.onload = saveImportedJSON;
     //TODO is the necessary?
     reader.readAsText( files[0] );
+    //refresh options page
+    browser.tabs.reload();
 }
 
 function saveImportedJSON() {
@@ -84,8 +86,6 @@ function saveImportedJSON() {
         });
         browser.storage.local.set( { colorMappings: settings } );
         importInput.value = '';
-        //refresh options page
-        browser.runtime.openOptionsPage();
     });
 }
 
