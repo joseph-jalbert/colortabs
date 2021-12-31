@@ -22,8 +22,6 @@ function setHostName( tabsObject ) {
 		colorMappings = item.colorMappings || {};
 		if ( colorMappings[ host ] ) {
 			colors.value = colorMappings[ host ];
-		} else {
-			colors.value = '#FFFFFF';
 		}
 	});
 }
