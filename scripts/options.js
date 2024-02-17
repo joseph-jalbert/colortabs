@@ -5,10 +5,12 @@ var settingsTable = document.getElementById('settings'),
 function renderMappings() {
     var rowsHTML = ``;
     for (hostName in colorMappings) {
+        let color = colorMappings[hostName].regexp ? colorMappings[hostName].color : colorMappings[hostName];
         rowsHTML += `
             <tr id="${hostName}">
                 <td>${hostName}</td>
-                <td style="background-color: ${colorMappings[hostName]}">${colorMappings[hostName]}</td>
+                <td style="background-color: ${color}">${color}</td>
+                <td style="text-align: center">${colorMappings[hostName].regexp ? "✓" : ""}</td>
                 <td><button class="delete">delete</button></td>
             </tr>
         `;
@@ -70,7 +72,7 @@ function importMappings(e) {
 function saveImportedJSON() {
     console.log("saveImportedJSON");
     console.log(this.result);
-    
+
     let importedSettings = JSON.parse(`${this.result}`).colorMappings,
         existingSettings,
         settings = {};
