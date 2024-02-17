@@ -28,10 +28,10 @@ function getURL(tabs) {
   switchColor();
 }
 
-function changeTheme(entry, mappings) {
+function changeTheme(color) {
   browser.theme.update({
     colors: {
-      frame: mappings[entry],
+      frame: color,
       backgroundtext: '#000',
     }
   });
@@ -44,20 +44,28 @@ function switchColor() {
 
     let foundMatch = false;
 
-    for (let hostRegexpString of Object.keys(colorMappings)) {
+    // iterate through all mappings with regexps
+    for (let hostRegexpString of Object.entries(colorMappings).filter(entry => entry[1].regexp).map(x => x[0])) {
       let hostRegexp = new RegExp(hostRegexpString);
 
       console.log(href);
 
       if (href.match(hostRegexp)) {
-        changeTheme(hostRegexpString, colorMappings);
+        changeTheme(colorMappings[hostRegexpString].color);
         foundMatch = true;
         break;
       }
     }
 
+    // if we didn't had a match, try the simple mappings
     if (!foundMatch) {
-      browser.theme.reset();
+      if ( colorMappings[ host ] ) {
+        changeTheme( colorMappings[host] );
+      } else if ( port.length !== 0 && colorMappings[ hostname ] ) {
+        changeTheme( colorMappings[hostname] );
+      } else {
+        browser.theme.reset();
+      }
     }
   }, onError);
 }
